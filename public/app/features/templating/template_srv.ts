@@ -161,6 +161,16 @@ export class TemplateSrv {
         }
         return value;
       }
+      case 'csv_avg': {
+        if (_.isArray(value)) {
+          let newValues;
+          newValues = value.map(function(e: string) {
+            return 'avgMerge(' + e + ')';
+          });
+          return newValues.join(',');
+        }
+        return value;
+      }
       case 'json': {
         return JSON.stringify(value);
       }
