@@ -8,6 +8,10 @@ function luceneEscape(value) {
   return value.replace(/([\!\*\+\-\=<>\s\&\|\(\)\[\]\{\}\^\~\?\:\\/"])/g, '\\$1');
 }
 
+function avgWrap(e: string) {
+  return 'avgMerge(' + e + ')';
+}
+
 export class TemplateSrv {
   variables: any[];
 
@@ -164,9 +168,7 @@ export class TemplateSrv {
       case 'csv_avg': {
         if (_.isArray(value)) {
           let newValues;
-          newValues = value.map(function(e: string) {
-            return 'avgMerge(' + e + ')';
-          });
+          newValues = value.map(avgWrap);
           return newValues.join(',');
         }
         return value;
