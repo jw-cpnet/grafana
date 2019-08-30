@@ -171,7 +171,7 @@ export class TemplateSrv {
           newValues = value.map(avgWrap);
           return newValues.join(',');
         }
-        return value;
+        return avgWrap(value);
       }
       case 'json': {
         return JSON.stringify(value);
